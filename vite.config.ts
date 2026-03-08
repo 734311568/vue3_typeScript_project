@@ -3,6 +3,7 @@ import vue from "@vitejs/plugin-vue";
 import { defineConfig } from "vite";
 
 import path from "path";
+
 import { createSvgIconsPlugin } from "vite-plugin-svg-icons";
 // https://vite.dev/config/
 export default defineConfig({
@@ -15,6 +16,7 @@ export default defineConfig({
       // 指定 symbolId 格式
       symbolId: "icon-[dir]-[name]",
     }),
+      
   ],
 
   resolve: {
@@ -22,4 +24,12 @@ export default defineConfig({
       "@": path.resolve(__dirname, "src"), //相对路径别名配置
     },
   },
+  css: {
+      preprocessorOptions: {
+        scss: {
+          javascriptEnabled: true,
+          additionalData: '@import "./src/styles/variable.scss";',
+        },
+      },
+    },
 });
