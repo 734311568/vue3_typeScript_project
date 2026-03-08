@@ -16,7 +16,6 @@ export default defineConfig({
       // 指定 symbolId 格式
       symbolId: "icon-[dir]-[name]",
     }),
-      
   ],
 
   resolve: {
@@ -25,11 +24,11 @@ export default defineConfig({
     },
   },
   css: {
-      preprocessorOptions: {
-        scss: {
-          javascriptEnabled: true,
-          additionalData: '@import "./src/styles/variable.scss";',
-        },
+    preprocessorOptions: {
+      scss: {
+        javascriptEnabled: true,
+        additionalData: '@import "./src/styles/variable.scss";',
       },
     },
+  },
 });
