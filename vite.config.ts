@@ -5,15 +5,15 @@ import { defineConfig } from "vite";
 import path from "path";
 
 import { createSvgIconsPlugin } from "vite-plugin-svg-icons";
-import { UserConfigExport, ConfigEnv } from 'vite'
-import { viteMockServe } from 'vite-plugin-mock'
+import { UserConfigExport, ConfigEnv } from "vite";
+import { viteMockServe } from "vite-plugin-mock";
 // https://vite.dev/config/
 export default defineConfig(({ command }) => {
   return {
     plugins: [
       vue(),
-         viteMockServe({
-        localEnabled: command === 'serve', // 开发环境启用mock
+      viteMockServe({
+        localEnabled: command === "serve", // 开发环境启用mock
       }),
       // 配置 SVG 雪碧图插件
       createSvgIconsPlugin({
