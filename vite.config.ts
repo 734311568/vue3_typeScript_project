@@ -16,8 +16,8 @@ export default defineConfig(({ command }) => {
       vue(),
       viteMockServe({
         localEnabled: command === "serve", // 开发环境启用mock
-        prodEnabled: false,   // ← 生产环境关闭
-      mockPath: 'src/mock', // ← 确保指向你的 mock 目录
+        prodEnabled: false, // ← 生产环境关闭
+        mockPath: "src/mock", // ← 确保指向你的 mock 目录
       }),
       // 配置 SVG 雪碧图插件
       createSvgIconsPlugin({

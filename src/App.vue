@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <h1>测svg</h1>
+    <h1 class="title">测svg</h1>
     <!---  svg 引用 -->
 
     <Pagination></Pagination>
@@ -8,6 +8,22 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
 
-<style scoped></style>
+import { onMounted } from "vue";
+import  {reqLogin} from "@/api/user";
+onMounted(() => {
+    reqLogin({
+        username: "admin",
+        password: "111111"
+    })  
+})
+
+
+</script>
+
+<style scoped lang="scss">
+.title {
+  color: red;
+}
+</style>
