@@ -3,7 +3,6 @@ import axios from "axios";
 
 import { ElMessage } from "element-plus";
 
-
 /*第一步 利用axios的create方法创建一个axios实例这样可以其他的配置（基础路径，超时时间）*/
 const request = axios.create({
   baseURL: import.meta.env.VITE_APP_BASE_API, // api的base_url
