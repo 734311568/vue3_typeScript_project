@@ -5,7 +5,9 @@ import { defineConfig } from "vite";
 import path from "path";
 
 import { createSvgIconsPlugin } from "vite-plugin-svg-icons";
+
 import { UserConfigExport, ConfigEnv } from "vite";
+
 import { viteMockServe } from "vite-plugin-mock";
 // https://vite.dev/config/
 export default defineConfig(({ command }) => {
@@ -14,6 +16,8 @@ export default defineConfig(({ command }) => {
       vue(),
       viteMockServe({
         localEnabled: command === "serve", // 开发环境启用mock
+        prodEnabled: false,   // ← 生产环境关闭
+      mockPath: 'src/mock', // ← 确保指向你的 mock 目录
       }),
       // 配置 SVG 雪碧图插件
       createSvgIconsPlugin({
