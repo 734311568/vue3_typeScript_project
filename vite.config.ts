@@ -26,8 +26,8 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        javascriptEnabled: true,
-        additionalData: '@import "./src/styles/variable.scss";',
+      
+        additionalData: `@import "@/styles/variable.scss";`, 
       },
     },
   },
