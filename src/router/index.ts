@@ -4,7 +4,7 @@ import { createRouter, createWebHashHistory } from "vue-router";
 import { route } from "./router";
 
 //创建路由
- let router =  createRouter({
+let router = createRouter({
   history: createWebHashHistory(),
   routes: route,
   //滚动行为
