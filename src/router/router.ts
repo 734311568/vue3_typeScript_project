@@ -1,5 +1,5 @@
 //对外暴露配置路由（常量路由）
-export const router = [
+export const route = [
   {
     path: "/",
     //使用懒加载
