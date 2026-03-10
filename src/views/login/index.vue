@@ -8,8 +8,6 @@
 import { ref } from "vue";
 </script>
 
-<style scoped lang="scess">
-.login {
+<style scoped lang="scss">
 
-}
 </style>

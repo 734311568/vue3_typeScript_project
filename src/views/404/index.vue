@@ -8,7 +8,6 @@
 import { ref } from "vue";
 </script>
 
-<style scoped lang="less">
-. {
-}
+<style scoped lang="scss">
+
 </style>
