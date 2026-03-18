@@ -24,7 +24,11 @@
             ></el-input>
           </el-from-item>
           <el-from-item>
-            <el-button class="login_btn" type="primary" size="default"
+            <el-button
+              class="login_btn"
+              type="primary"
+              size="default"
+              @click="loginHand"
               >登录</el-button
             >
           </el-from-item>
@@ -36,13 +40,39 @@
 
 <script setup lang="ts">
 import { User, Lock } from "@element-plus/icons-vue";
-import { el } from "element-plus/es/locale/index.mjs";
+import { ElNotification } from "element-plus";
 import { reactive } from "vue";
+import useUserStore from "@/store/modules/user"; //引入用户仓库
+import { useRouter } from "vue-router";
+//使用小仓库
+const userStore = useUserStore();
+
+//获取路由器
+let $router = useRouter();
+
 //收集表单对象
 const loginForm = reactive({
   username: "admin",
   password: "111111",
 });
+
+//登入事件回调loginHand 方法
+const loginHand = async () => {
+  //点击登入通知仓库需要登入请求
+  //登录成功之后干嘛
+  //登录失败之后干嘛
+  try {
+    //可以书写.then 语法
+    await userStore.userLogin(loginForm);
+    $router.push("/"); //登录成功就跳转到首页
+    ElNotification({
+      type: "success",
+      message: "登录成功",
+    });
+  } catch (error) {
+    ElNotification.error((error as Error).message); //断言如果是错误类型的化error 那就错误信息
+  }
+};
 </script>
 
 <style scoped lang="scss">
