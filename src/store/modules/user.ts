@@ -2,14 +2,16 @@
 
 import type { LoginForm, LoginResponseData } from "@/api/user/type";
 import { reqLogin } from "@/api/user";
-import type { UserState } from "@/store/types/type";  
+import type { UserState } from "@/store/types/type";
+import { setToken ,getToken } from "@/utils/token"; 
 
 import { defineStore } from "pinia";
 //创建用户相关的小仓库
 const useUserStore = defineStore("user", {
-  state: (): UserState  => {
+  state: (): UserState => {
     return {
-      token: localStorage.getItem("TOKEN") ?? "",
+     // token: localStorage.getItem("TOKEN") ?? "",
+     token:getToken(),
     };
   },
   //异步|逻辑方法
@@ -21,9 +23,10 @@ const useUserStore = defineStore("user", {
       const result: LoginResponseData = await reqLogin(data);
       //登录成功
       if (result.code === 200) {
-        this.token = (result.data.token as string);
+        this.token = result.data.token as string;
         //持久化存储token
-        localStorage.setItem("TOKEN", result.data.token as string);
+        //localStorage.setItem("TOKEN", result.data.token as string);
+        setToken(result.data.token as string);
         //跳转能保证当前登入成功的状态
         return "ok";
       } //登录失败
