@@ -32,7 +32,6 @@
               @click="loginHand"
               >登录</el-button
             >
-
           </el-from-item>
         </el-form>
       </el-col>
@@ -75,7 +74,6 @@ const loginHand = async () => {
     ElNotification.error((error as Error).message); //断言如果是错误类型的化error 那就错误信息
   }
 };
-
 </script>
 
 <style scoped lang="scss">
@@ -101,13 +99,10 @@ const loginHand = async () => {
       color: white;
       font-size: 20px;
       margin: 20px 0px;
-
-    } 
-    .login_btn{
+    }
+    .login_btn {
       width: 100%;
     }
-
-
   }
 }
 </style>
