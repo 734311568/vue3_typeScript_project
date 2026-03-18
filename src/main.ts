@@ -16,10 +16,7 @@ import pinia from "./store";
 const app = createApp(App);
 app.use(ElementPlus, {
   locale: zhCn,
-
 });
-
-
 
 app.use(ElementPlus);
 //注册项目的全局组件
