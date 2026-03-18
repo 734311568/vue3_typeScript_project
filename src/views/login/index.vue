@@ -25,7 +25,8 @@
             ></el-input>
           </el-from-item>
           <el-from-item>
-            <el-button
+            <el-button 
+              :loading="loading"
               class="login_btn"
               type="primary"
               size="default"
@@ -42,15 +43,17 @@
 <script setup lang="ts">
 import { User, Lock } from "@element-plus/icons-vue";
 import { ElNotification } from "element-plus";
-import { reactive } from "vue";
+import { reactive ,ref} from "vue";
 import useUserStore from "@/store/modules/user"; //引入用户仓库
 import { useRouter } from "vue-router";
+import { lo } from "element-plus/es/locale/index.mjs";
 //使用小仓库
 const userStore = useUserStore();
 
 //获取路由器
 let $router = useRouter();
-
+//定义控制登录加载效果 ，已开始为false 登录后改变状态
+let loading = ref(false);
 //收集表单对象
 const loginForm = reactive({
   username: "admin",
@@ -59,6 +62,8 @@ const loginForm = reactive({
 
 //登入事件回调loginHand 方法
 const loginHand = async () => {
+  //loding.value = true;
+  loading.value = true;
   //点击登入通知仓库需要登入请求
   //登录成功之后干嘛
   //登录失败之后干嘛
@@ -70,8 +75,10 @@ const loginHand = async () => {
       type: "success",
       message: "登录成功",
     });
+    loading.value = false;//登录成功加载效果结束
   } catch (error) {
     ElNotification.error((error as Error).message); //断言如果是错误类型的化error 那就错误信息
+    loading.value = false;//登录失败加载效果结束
   }
 };
 </script>
