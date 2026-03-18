@@ -2,38 +2,23 @@
   <div class="login_container">
     <!---用element-plus布局 一行两列-->
     <el-row>
-      <el-col :span="12" :xs="0">左边 </el-col>
+      <el-col :span="12" :xs="0"> </el-col>
       <el-col :span="12" :xs="24">
         <!--登录表单-->
-        <el-form class="login_from">
+        <el-form :model="loginForm" :rules="rules" class="login_from">
           <h1>holle</h1>
           <h2>欢迎来到吊毛基地</h2>
-          <el-from-item>
-            <el-input
-              :prefix-icon="User"
-              type="text"
-              v-model="loginForm.username"
-            ></el-input>
-          </el-from-item>
-          <el-from-item>
-            <el-input
-              :prefix-icon="Lock"
-              label="密码"
-              type="password"
-              v-model="loginForm.password"
-              show-password
-            ></el-input>
-          </el-from-item>
-          <el-from-item>
-            <el-button
-              :loading="loading"
-              class="login_btn"
-              type="primary"
-              size="default"
-              @click="loginHand"
-              >登录</el-button
-            >
-          </el-from-item>
+          <el-form-item prop="username">
+            <el-input :prefix-icon="User" type="text" v-model="loginForm.username"></el-input>
+          </el-form-item>
+          <el-form-item prop="password">
+            <el-input :prefix-icon="Lock" label="密码" type="password" v-model="loginForm.password"
+              show-password></el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-button :loading="loading" class="login_btn" type="primary" size="default"
+              @click="loginHand">登录</el-button>
+          </el-form-item>
         </el-form>
       </el-col>
     </el-row>
@@ -84,6 +69,35 @@ const loginHand = async () => {
     loading.value = false; //登录失败加载效果结束
   }
 };
+//定义表单校验对象
+const rules = reactive({
+  username: [
+    {
+      required: true,
+      message: "用户名不能为空",
+      trigger: "blur",
+    },
+    {
+      min: 4,
+      max: 10,
+      message: "用户名在4到10位之间",
+      trigger: "blur",
+    },
+  ],
+  password: [
+    {
+      required: true,
+      message: "密码不能为空",
+      trigger: "blur",
+    },
+    {
+      min: 6,
+      max: 15,
+      message: "密码在6到15位之间",
+      trigger: "blur",
+    },
+  ],
+}); 
 </script>
 
 <style scoped lang="scss">
@@ -96,7 +110,7 @@ const loginHand = async () => {
   .login_from {
     position: relative;
     width: 80%;
-    top: 30vh;
+    top: 32vh;
     background: url("@/assets/images/login_form.png") no-repeat;
     background-size: cover;
 
@@ -110,6 +124,7 @@ const loginHand = async () => {
       font-size: 20px;
       margin: 20px 0px;
     }
+
     .login_btn {
       width: 100%;
     }
