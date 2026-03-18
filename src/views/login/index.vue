@@ -5,7 +5,7 @@
       <el-col :span="12" :xs="0"> </el-col>
       <el-col :span="12" :xs="24">
         <!--登录表单-->
-        <el-form :model="loginForm" :rules="rules" class="login_from">
+        <el-form :model="loginForm" :rules="rules" class="login_from" ref="loginFormRef">
           <h1>holle</h1>
           <h2>欢迎来到吊毛基地</h2>
           <el-form-item prop="username">
@@ -33,6 +33,9 @@ import useUserStore from "@/store/modules/user"; //引入用户仓库
 import { useRouter } from "vue-router";
 import { lo } from "element-plus/es/locale/index.mjs";
 import { getTime } from "@/utils/time"; //引入getTime from "@/utils/time.ts";
+//获取el-form组件
+const loginFormRef = ref();
+
 //使用小仓库
 const userStore = useUserStore();
 
@@ -49,6 +52,12 @@ const loginForm = reactive({
 const time = getTime();
 //登入事件回调loginHand 方法
 const loginHand = async () => {
+  //表单校验
+  //保证全部表单项校验通过再发请求 
+  //console.log(loginFormRef.value);
+  await   loginFormRef.value.validate();
+ // console.log(result);
+
   //loding.value = true;
   loading.value = true;
   //点击登入通知仓库需要登入请求
