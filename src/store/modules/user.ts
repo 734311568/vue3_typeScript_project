@@ -3,15 +3,15 @@
 import type { LoginForm, LoginResponseData } from "@/api/user/type";
 import { reqLogin } from "@/api/user";
 import type { UserState } from "@/store/types/type";
-import { setToken ,getToken } from "@/utils/token"; 
+import { setToken, getToken } from "@/utils/token";
 
 import { defineStore } from "pinia";
 //创建用户相关的小仓库
 const useUserStore = defineStore("user", {
   state: (): UserState => {
     return {
-     // token: localStorage.getItem("TOKEN") ?? "",
-     token:getToken(),
+      // token: localStorage.getItem("TOKEN") ?? "",
+      token: getToken(),
     };
   },
   //异步|逻辑方法
