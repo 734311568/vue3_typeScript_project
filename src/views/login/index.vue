@@ -47,6 +47,7 @@ import { reactive, ref } from "vue";
 import useUserStore from "@/store/modules/user"; //引入用户仓库
 import { useRouter } from "vue-router";
 import { lo } from "element-plus/es/locale/index.mjs";
+import { getTime } from "@/utils/time"; //引入getTime from "@/utils/time.ts";
 //使用小仓库
 const userStore = useUserStore();
 
@@ -59,7 +60,8 @@ const loginForm = reactive({
   username: "admin",
   password: "111111",
 });
-
+//获取当前时间 返回变量 时间状态的消息
+const time = getTime();
 //登入事件回调loginHand 方法
 const loginHand = async () => {
   //loding.value = true;
@@ -74,6 +76,7 @@ const loginHand = async () => {
     ElNotification({
       type: "success",
       message: "登录成功",
+      title: `hi,${time}`,
     });
     loading.value = false; //登录成功加载效果结束
   } catch (error) {
@@ -81,6 +84,7 @@ const loginHand = async () => {
     loading.value = false; //登录失败加载效果结束
   }
 };
+
 </script>
 
 <style scoped lang="scss">
