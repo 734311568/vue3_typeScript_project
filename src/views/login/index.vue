@@ -5,19 +5,39 @@
       <el-col :span="12" :xs="0"> </el-col>
       <el-col :span="12" :xs="24">
         <!--登录表单-->
-        <el-form :model="loginForm" :rules="rules" class="login_from" ref="loginFormRef">
+        <el-form
+          :model="loginForm"
+          :rules="rules"
+          class="login_from"
+          ref="loginFormRef"
+        >
           <h1>holle</h1>
           <h2>欢迎来到吊毛基地</h2>
           <el-form-item prop="username">
-            <el-input :prefix-icon="User" type="text" v-model="loginForm.username"></el-input>
+            <el-input
+              :prefix-icon="User"
+              type="text"
+              v-model="loginForm.username"
+            ></el-input>
           </el-form-item>
           <el-form-item prop="password">
-            <el-input :prefix-icon="Lock" label="密码" type="password" v-model="loginForm.password"
-              show-password></el-input>
+            <el-input
+              :prefix-icon="Lock"
+              label="密码"
+              type="password"
+              v-model="loginForm.password"
+              show-password
+            ></el-input>
           </el-form-item>
           <el-form-item>
-            <el-button :loading="loading" class="login_btn" type="primary" size="default"
-              @click="loginHand">登录</el-button>
+            <el-button
+              :loading="loading"
+              class="login_btn"
+              type="primary"
+              size="default"
+              @click="loginHand"
+              >登录</el-button
+            >
           </el-form-item>
         </el-form>
       </el-col>
@@ -53,10 +73,10 @@ const time = getTime();
 //登入事件回调loginHand 方法
 const loginHand = async () => {
   //表单校验
-  //保证全部表单项校验通过再发请求 
+  //保证全部表单项校验通过再发请求
   //console.log(loginFormRef.value);
-  await   loginFormRef.value.validate();
- // console.log(result);
+  await loginFormRef.value.validate();
+  // console.log(result);
 
   //loding.value = true;
   loading.value = true;
@@ -78,35 +98,41 @@ const loginHand = async () => {
     loading.value = false; //登录失败加载效果结束
   }
 };
+
+//自定义校验规则
+const validatorUsername = (rule: any, value: any, callback: any) => {
+  //rule 代表的是当前的校验规则对象
+  //value 代表的是当前校验的值
+  //callback 代表的是校验的回调  /^\d{5,10}$/.test(value)
+  if(value.length >= 5){
+    callback ();
+  }else{
+    callback(new Error("请输入正确的用户名"));
+  }
+   
+}
+//自定校验密码
+const validatorPassword = (rule: any, value: any, callback: any) => {
+  //rule 代表的是当前的校验规则对象
+  //value 代表的是当前校验的值
+  //callback 代表的是校验的回调  /^\d{5,10}$/.test(value)
+  if(value.length >= 6){
+    callback ();
+  }else{
+    callback(new Error("请输入正确的密码"));
+  }
+}
 //定义表单校验对象
 const rules = reactive({
+  //自定义规则
   username: [
-    {
-      required: true,
-      message: "用户名不能为空",
-      trigger: "blur",
-    },
-    {
-      min: 4,
-      max: 10,
-      message: "用户名在4到10位之间",
-      trigger: "blur",
-    },
+    { trigger: "change",validator:validatorUsername},
   ],
+  //自定义规则
   password: [
-    {
-      required: true,
-      message: "密码不能为空",
-      trigger: "blur",
-    },
-    {
-      min: 6,
-      max: 15,
-      message: "密码在6到15位之间",
-      trigger: "blur",
-    },
+     { trigger: "change",validator:validatorPassword},
   ],
-}); 
+});
 </script>
 
 <style scoped lang="scss">

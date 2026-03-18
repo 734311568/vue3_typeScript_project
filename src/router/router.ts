@@ -3,7 +3,7 @@ export const route = [
   {
     path: "/",
     //使用懒加载
-    component: () => import("@/views/home/index.vue"),
+    component: () => import("@/layout/index.vue"),
     name: "home", //命名路由
   },
   {
