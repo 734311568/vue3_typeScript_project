@@ -16,7 +16,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 //左侧菜单logo的子组件
-import Logo from "@/layout/logo/index.vue";  
+import Logo from "@/layout/logo/index.vue";
 </script>
 
 <style scoped lang="scss">
