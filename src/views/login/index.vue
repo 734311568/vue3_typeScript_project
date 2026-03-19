@@ -104,34 +104,29 @@ const validatorUsername = (rule: any, value: any, callback: any) => {
   //rule 代表的是当前的校验规则对象
   //value 代表的是当前校验的值
   //callback 代表的是校验的回调  /^\d{5,10}$/.test(value)
-  if(value.length >= 5){
-    callback ();
-  }else{
+  if (value.length >= 5) {
+    callback();
+  } else {
     callback(new Error("请输入正确的用户名"));
   }
-   
-}
+};
 //自定校验密码
 const validatorPassword = (rule: any, value: any, callback: any) => {
   //rule 代表的是当前的校验规则对象
   //value 代表的是当前校验的值
   //callback 代表的是校验的回调  /^\d{5,10}$/.test(value)
-  if(value.length >= 6){
-    callback ();
-  }else{
+  if (value.length >= 6) {
+    callback();
+  } else {
     callback(new Error("请输入正确的密码"));
   }
-}
+};
 //定义表单校验对象
 const rules = reactive({
   //自定义规则
-  username: [
-    { trigger: "change",validator:validatorUsername},
-  ],
+  username: [{ trigger: "change", validator: validatorUsername }],
   //自定义规则
-  password: [
-     { trigger: "change",validator:validatorPassword},
-  ],
+  password: [{ trigger: "change", validator: validatorPassword }],
 });
 </script>
 
