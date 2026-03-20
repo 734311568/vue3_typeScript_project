@@ -4,6 +4,7 @@ import type { LoginForm, LoginResponseData } from "@/api/user/type";
 import { reqLogin } from "@/api/user";
 import type { UserState } from "@/store/types/type";
 import { setToken, getToken } from "@/utils/token";
+import { route } from "@/router/router";
 
 import { defineStore } from "pinia";
 //创建用户相关的小仓库
@@ -12,6 +13,8 @@ const useUserStore = defineStore("user", {
     return {
       // token: localStorage.getItem("TOKEN") ?? "",
       token: getToken(),
+      //放置路由
+      menuRoutes:route //菜单路由数组
     };
   },
   //异步|逻辑方法
