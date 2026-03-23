@@ -6,9 +6,10 @@
      
       <!--没有子路由-->
     <template v-if="!item.children">
-        <el-menu-item :index="item.path" v-if="!item.hidden">
+        <el-menu-item :index="item.path" v-if="!item.hidden" @click="goRouter">
         <template #title>
-          <span>标:&nbsp;</span>
+          <!---icon 图标-->
+          <el-icon><component :is="item.icon"></component></el-icon>
           <span>{{ item.meta.title }}</span>
         </template>
       </el-menu-item>
@@ -18,6 +19,7 @@
      <el-menu-item :index="item.children[0].path" v-if="!item.children[0].hidden">
 
         <template #title>
+          <el-icon><component :is="item.children[0].icon"></component></el-icon>
           <span>{{ item.children[0].meta.title }}</span>
         </template>
       </el-menu-item>
@@ -26,7 +28,8 @@
     <template v-if="item.children && item.children.length > 1" >
       <!--有多个子路由-->
         <el-sub-menu :index="item.path"   v-if="!item.hidden">
-          <template #title>
+          <template #title >
+             <el-icon><component :is="item.icon"></component></el-icon>
             <span>{{ item.meta.title }}</span>
           </template>
           <!--递归组件-->
@@ -39,12 +42,14 @@
 </template>
 
 <script setup lang='ts'>
-import { el } from 'element-plus/es/locale/index.mjs';
-import { te } from 'element-plus/lib/locale/index.js';
-import { ref } from 'vue'
+
 //获取用户菜单
 defineProps(['menuList'])
+//定义菜单点击事件
 
+const goRouter = (vc:any) => {
+ console.log(vc)
+}
 
 </script>
  <!--递归组件-->
