@@ -6,7 +6,7 @@
       <!--滚动组件-->
       <el-scrollbar class="scrollbar">
         <!---菜单组件-->
-        <el-menu background-color="#001529" text-color="white">
+        <el-menu background-color="#001529" text-color="white" :default-active="$route.path">
         <!---根据路由动态生成菜单   父组件给子组件传值-->
           <Mnues :menuList="userStore.menuRoutes"></Mnues>
         </el-menu>
@@ -32,6 +32,10 @@ import Mnues   from "@/layout/menu/index.vue";
 import useUserStore from "@/store/modules/user";  
 //引入封装一层路由main 
 import layoutMain from "./main/index.vue"; 
+//引入路由
+import { useRoute } from "vue-router";
+
+let $route = useRoute();
 let userStore = useUserStore();
 </script>
 
