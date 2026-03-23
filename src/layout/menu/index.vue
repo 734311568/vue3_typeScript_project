@@ -15,8 +15,8 @@
       </el-menu-item>
       </template>
       <!--有一个子路由-->
-      <template v-if="item.children && item.children.length === 1" >
-     <el-menu-item :index="item.children[0].path" v-if="!item.children[0].hidden">
+      <template v-if="item.children && item.children.length === 1">
+     <el-menu-item :index="item.children[0].path" v-if="!item.children[0].hidden"  @click="goRouter">
 
         <template #title>
           <el-icon><component :is="item.children[0].icon"></component></el-icon>
@@ -45,10 +45,16 @@
 
 //获取用户菜单
 defineProps(['menuList'])
+//引入路由
+import { useRouter } from "vue-router";
+let  $router = useRouter();
+
 //定义菜单点击事件
 
 const goRouter = (vc:any) => {
- console.log(vc)
+  //路由跳转
+  $router.push(vc.index)
+ //console.log(vc)
 }
 
 </script>

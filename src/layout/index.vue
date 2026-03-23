@@ -16,7 +16,8 @@
     <div class="layout_tabbar">底部导航</div>
     <!-- 右侧内容 -->
     <div class="layout_main">
-      <p style="height: 100000px; background-color: red">我是一个段落</p>
+      <!---路由出口-->
+      <layoutMain></layoutMain>
     </div>
   </div>
 </template>
@@ -29,6 +30,8 @@ import Logo from "@/layout/logo/index.vue";
 import Mnues   from "@/layout/menu/index.vue";
 //获取用户相关的小仓库
 import useUserStore from "@/store/modules/user";  
+//引入封装一层路由main 
+import layoutMain from "./main/index.vue"; 
 let userStore = useUserStore();
 </script>
 
