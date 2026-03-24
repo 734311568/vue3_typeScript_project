@@ -13,7 +13,10 @@
       </el-scrollbar>
     </div>
     <!--顶部导航-->
-    <div class="layout_tabbar">底部导航</div>
+    <div class="layout_tabbar">
+      <!--laytout_tabbar组件-->
+      <Tabbar></Tabbar>
+    </div>
     <!-- 右侧内容 -->
     <div class="layout_main">
       <!---路由出口-->
@@ -31,9 +34,11 @@ import Mnues   from "@/layout/menu/index.vue";
 //获取用户相关的小仓库
 import useUserStore from "@/store/modules/user";  
 //引入封装一层路由main 
-import layoutMain from "./main/index.vue"; 
+import layoutMain from "@/layout/main/index.vue"; 
 //引入路由
 import { useRoute } from "vue-router";
+//引入顶部导航组件
+import Tabbar from "@/layout/tabbar/index.vue";
 
 let $route = useRoute();
 let userStore = useUserStore();
@@ -48,6 +53,7 @@ let userStore = useUserStore();
     width: $base-menu-width;
     height: 100vh;
     background: $base-menu-background;
+    color: white;
 
     .scrollbar {
       width: 100%;
@@ -63,7 +69,7 @@ let userStore = useUserStore();
     position: fixed;
     width: calc(100% - $base-menu-width);
     height: $base-tabbar-height;
-    background: cyan;
+    
     top: 0px;
     left: $base-menu-width;
   }
