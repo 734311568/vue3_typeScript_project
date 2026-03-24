@@ -3,12 +3,11 @@ import { Fold } from "@element-plus/icons-vue";
 
 import { defineStore } from "pinia";
 let useLayoutSettingStore = defineStore("settingStore", {
-    state: () => {
-        return {
-            fold: false,  //用户控制效果    
-                
-        };
-    },
-})  
+  state: () => {
+    return {
+      fold: false, //用户控制效果
+    };
+  },
+});
 
-export default  useLayoutSettingStore;       
+export default useLayoutSettingStore;

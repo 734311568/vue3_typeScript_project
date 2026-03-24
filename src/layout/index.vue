@@ -1,24 +1,38 @@
 <template>
   <div class="layout">
     <!-- 左侧菜单 -->
-    <div class="layout_sider" :class="{ fold: settingStore.fold ? true : false  } ">
+    <div
+      class="layout_sider"
+      :class="{ fold: settingStore.fold ? true : false }"
+    >
       <Logo></Logo>
       <!--滚动组件-->
-      <el-scrollbar class="scrollbar" >
+      <el-scrollbar class="scrollbar">
         <!---菜单组件-->
-        <el-menu   :collapse="settingStore.fold ? true : false"  background-color="#001529" text-color="white" :default-active="$route.path">
-        <!---根据路由动态生成菜单   父组件给子组件传值-->
-          <Mnues :menuList="userStore.menuRoutes"></Mnues>  
+        <el-menu
+          :collapse="settingStore.fold ? true : false"
+          background-color="#001529"
+          text-color="white"
+          :default-active="$route.path"
+        >
+          <!---根据路由动态生成菜单   父组件给子组件传值-->
+          <Mnues :menuList="userStore.menuRoutes"></Mnues>
         </el-menu>
       </el-scrollbar>
     </div>
     <!--顶部导航-->
-    <div class="layout_tabbar" :class="{ fold: settingStore.fold ? true : false  } ">
+    <div
+      class="layout_tabbar"
+      :class="{ fold: settingStore.fold ? true : false }"
+    >
       <!--laytout_tabbar组件-->
       <Tabbar></Tabbar>
     </div>
     <!-- 右侧内容 -->
-    <div class="layout_main" :class="{ fold: settingStore.fold ? true : false  } ">
+    <div
+      class="layout_main"
+      :class="{ fold: settingStore.fold ? true : false }"
+    >
       <!---路由出口-->
       <layoutMain></layoutMain>
     </div>
@@ -30,11 +44,11 @@ import { ref } from "vue";
 //左侧菜单logo的子组件S
 import Logo from "@/layout/logo/index.vue";
 //引入菜单组件
-import Mnues   from "@/layout/menu/index.vue";
+import Mnues from "@/layout/menu/index.vue";
 //获取用户相关的小仓库
-import useUserStore from "@/store/modules/user";  
-//引入封装一层路由main 
-import layoutMain from "@/layout/main/index.vue"; 
+import useUserStore from "@/store/modules/user";
+//引入封装一层路由main
+import layoutMain from "@/layout/main/index.vue";
 //引入路由
 import { useRoute } from "vue-router";
 //引入顶部导航组件
@@ -42,7 +56,6 @@ import Tabbar from "@/layout/tabbar/index.vue";
 import useLayoutSettingStore from "@/store/modules/setting";
 
 let settingStore = useLayoutSettingStore();
-
 
 let $route = useRoute();
 let userStore = useUserStore();
@@ -58,7 +71,7 @@ let userStore = useUserStore();
     height: 100vh;
     background: $base-menu-background;
     color: white;
-    transform: all 0.3s ease-in-out ;
+    transform: all 0.3s ease-in-out;
 
     .scrollbar {
       width: 100%;
@@ -70,7 +83,6 @@ let userStore = useUserStore();
     }
     &.fold {
       width: $base-menu-min-width;
-;
     }
   }
 
@@ -78,7 +90,7 @@ let userStore = useUserStore();
     position: fixed;
     width: calc(100% - $base-menu-width);
     height: $base-tabbar-height;
-    transform: all 0.3s ease-in-out ;
+    transform: all 0.3s ease-in-out;
     &.fold {
       width: calc(100vw - $base-menu-min-width);
       left: $base-menu-min-width;
@@ -95,9 +107,9 @@ let userStore = useUserStore();
     left: $base-menu-width;
     top: $base-tabbar-height;
     padding: 20px;
-    transform: all 0.3s ease-in-out ;
+    transform: all 0.3s ease-in-out;
     overflow: auto;
-       &.fold {
+    &.fold {
       width: calc(100vw - $base-menu-min-width);
       left: $base-menu-min-width;
     }

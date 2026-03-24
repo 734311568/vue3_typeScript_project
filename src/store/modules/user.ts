@@ -14,7 +14,7 @@ const useUserStore = defineStore("user", {
       // token: localStorage.getItem("TOKEN") ?? "",
       token: getToken(),
       //放置路由
-      menuRoutes:route //菜单路由数组
+      menuRoutes: route, //菜单路由数组
     };
   },
   //异步|逻辑方法
