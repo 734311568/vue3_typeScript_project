@@ -47,10 +47,11 @@
 </template>
 
 <script setup lang="ts">
+import { useRouter } from "vue-router";
 //获取用户菜单
 defineProps(["menuList"]);
 //引入路由
-import { useRouter } from "vue-router";
+
 let $router = useRouter();
 
 //定义菜单点击事件
